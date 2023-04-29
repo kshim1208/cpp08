@@ -1,10 +1,10 @@
-NAME = Span
+NAME = Mutated_abomination
 CPPC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm
 RMFLAGS = -f
 
-SRCS = main.cpp Span.cpp
+SRCS = main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

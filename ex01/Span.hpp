@@ -1,11 +1,15 @@
 #ifndef Span_HPP
 # define Span_HPP
 
+# include <vector>
+
 class Span
 {
 	private:
-		unsigned int	N;
-		Span(/* args*/);
+		unsigned int		N_;
+		std::vector<int>	stored_;
+		Span(/* args*/){};
+
 	public:
 		Span(unsigned int num);
 		~Span();

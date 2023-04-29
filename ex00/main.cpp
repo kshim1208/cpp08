@@ -13,7 +13,7 @@ int main()
 	std::deque<int>		deque_a;
 	std::list<int>		list_a;
 	
-	int					target = 15;
+	int					target = 5;
 
 	try
 	{
