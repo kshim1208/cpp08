@@ -17,12 +17,12 @@ class MutantStack
 
 		class Iterator : public std::iterator<
 									std::input_iterator_tag,
-									T,
-									T,
+									value_type,
+									size_type,
 									uintptr_t*,
-									T
+									const_reference
 											>{
-				// 해당 iterator가 가리키는 값? 을 저장? 이미 container에 들어있는데?
+				//
 			public:
 				explicit Iterator(){}
 				Iterator& operator=(Iterator& rhs) {}
@@ -32,6 +32,15 @@ class MutantStack
 				bool operator!= (Iterator& rhs) const {}
 				reference operator*() const {}
 		};
+		Iterator begin()
+		{
+			return Iterator();
+		}
+
+		Iterator end()
+		{
+			return Iterator( /* c의 size 이용? */);
+		}
 
 	private:
 		container_type	c;
@@ -78,11 +87,6 @@ class MutantStack
 		{
 			c.pop_back();
 		}
-
-		// iterator
-		iterator	begin(){}
-		iterator	end(){}
-		
 };
 
 
