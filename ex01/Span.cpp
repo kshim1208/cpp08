@@ -47,6 +47,8 @@ void	Span::addNumber(unsigned int num)
 
 // iterator에 증감 연산하는게 올바른 동작인가?
 	// 적절한 algorithm이 안보여서 이렇게 만들었는데, 혹시 다른 방법이 있을까?
+	// iterator는 증가연산을 구현한다. 따라서 증가 연산을 해도 내부에서 구현된 동작이 수행될 것으로 보인다.
+	// !!! 단, 감소 연산은 그렇지 않은 것 같다
 unsigned int Span::shortestSpan() const
 {
 	unsigned int						span = UINT_MAX;
