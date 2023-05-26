@@ -1,6 +1,7 @@
 NAME = Easy_find
 CPPC = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+# CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Werror -Wextra
 RM = rm
 RMFLAGS = -f
 

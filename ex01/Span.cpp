@@ -3,13 +3,16 @@
 
 #include <algorithm>
 #include <stdexcept>
-#include <random>
+#include <cstdlib>
+#include <climits>
+#include <ctime>
+#include <numeric>
 
 Span::Span(unsigned int num)
 {
 	this->N_ = num;
 	this->stored_.resize(num);
-	std::srand(static_cast<unsigned int>(std::time(nullptr)));
+	std::srand(static_cast<unsigned int>(std::time(0)));
 	std::generate(this->stored_.begin(), this->stored_.end(), random_number);
 	// resize exception
 }
@@ -49,41 +52,30 @@ void	Span::addNumber(unsigned int num)
 	// 적절한 algorithm이 안보여서 이렇게 만들었는데, 혹시 다른 방법이 있을까?
 	// iterator는 증가연산을 구현한다. 따라서 증가 연산을 해도 내부에서 구현된 동작이 수행될 것으로 보인다.
 	// !!! 단, 감소 연산은 그렇지 않은 것 같다
+		// reverse iterator 사용하기
 unsigned int Span::shortestSpan() const
 {
-	unsigned int						span = UINT_MAX;
-	unsigned int						tmp = 0;
+	std::vector<int>::const_iterator	start = this->stored_.begin();
 	std::vector<int>::const_iterator 	end = this->stored_.end();
+	std::vector<int>					tmp(5);
 
 	if (this->N_ <= 1)
 		throw std::invalid_argument("one or no numbers stored");
-	for (std::vector<int>::const_iterator	start = this->stored_.begin();
-		start < --end;
-		start++)
-	{
-		tmp = check_span(*start, *(start + 1));
-		if (tmp < span)
-			span = tmp;
-	}
+	std::adjacent_difference(start, end, tmp);
+	// tmp에서 제일 작은 것 찾기
 	return (span);
 }
 
 unsigned int Span::longestSpan() const
 {
-	unsigned int						span = 0;
-	unsigned int						tmp = 0;
+	std::vector<int>::const_iterator	start = this->stored_.begin();
 	std::vector<int>::const_iterator 	end = this->stored_.end();
+	std::vector<int>					tmp(5);
 
 	if (this->N_ <= 1)
 		throw std::invalid_argument("one or no numbers stored");
-	for (std::vector<int>::const_iterator	start = this->stored_.begin();
-		start < --end;
-		start++)
-	{
-		tmp = check_span(*start, *(start + 1));
-		if (tmp > span)
-			span = tmp;
-	}
+	std::adjacent_difference(start, end, tmp);
+	// tmp에서 제일 작은 것 찾기
 	return (span);
 }
 

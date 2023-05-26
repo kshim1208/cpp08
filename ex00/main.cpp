@@ -7,13 +7,14 @@
 
 #include <iostream>
 
+
 int main()
 {
 	std::vector<int>	vector_a;
 	std::deque<int>		deque_a;
 	std::list<int>		list_a;
 	
-	int					target = 5;
+	int					target = 10;
 
 	try
 	{
