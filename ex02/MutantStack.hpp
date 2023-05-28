@@ -86,12 +86,12 @@ class MutantStack : public std::stack<T>
 		~MutantStack(){};
 		MutantStack(const MutantStack& source)
 		{
-			std::copy(source.begin(), source.end(), this.begin());
+			std::copy(source.begin(), source.end(), this->begin());
 		}
 
 		MutantStack& operator=(const MutantStack& source)
 		{
-			std::copy(source.begin(), source.end(), this.begin());
+			std::copy(source.begin(), source.end(), this->begin());
 			return (*this);
 		}
 };

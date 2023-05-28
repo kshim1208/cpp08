@@ -1,6 +1,6 @@
 NAME = Easy_find
-CPPC = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CXX = c++
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm
 RMFLAGS = -f
 
@@ -9,10 +9,10 @@ SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 $(NAME): $(OBJS)
-	$(CPPC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 %.o	: %.cpp
-	$(CPPC) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 all : $(NAME)
 
