@@ -5,7 +5,7 @@
 #include <iterator>
 
 
-// using 사용하기  typedef는 모던 cpp에서는 deprecated됨. using이 c+98 가능인지 체크
+// using을 주로 사용함 typedef는 모던 cpp에서는 deprecated됨. using이 c+98 가능인지 체크
 
 template<class T>
 class MutantStack : public std::stack<T>
