@@ -52,33 +52,32 @@ void	Span::addNumber(unsigned int num)
 
 unsigned int Span::shortestSpan() const
 {
-	std::vector<int>					tmp(this->stored_);
+	std::vector<unsigned int>					tmp(this->N_);
 
 	if (this->N_ <= 1)
 		throw std::invalid_argument("one or no numbers stored");
-	std::adjacent_difference(std::begin(tmp), std::end(tmp), std::begin(tmp));
+	std::adjacent_difference(std::begin(this->stored_), std::end(this->stored_), std::begin(tmp), check_span);
 	// tmp에서 제일 작은 것 찾기 (절대값 고려)
-	return (span);
+	return (tmp[1]);
 }
 
 unsigned int Span::longestSpan() const
 {
-	std::vector<int>					tmp(this->stored_);
+	std::vector<unsigned int>					tmp(this->N_);
 
 	if (this->N_ <= 1)
 		throw std::invalid_argument("one or no numbers stored");
-	std::adjacent_difference(std::begin(tmp), std::end(tmp), std::begin(tmp));
+	std::adjacent_difference(std::begin(this->stored_), std::end(this->stored_), std::begin(tmp), check_span);
 	// tmp에서 제일 큰 것 찾기 (절대값 고려)
-	return (span);
+	return (tmp[1]);
 }
 
 int		random_number(void)
 {
-	return (std::rand() / 10000);
+	return (std::rand() % 10000);
 }
 
 unsigned int	check_span(int a, int b)
 {
-	// int를 unsigned int로 적절하게 변환할 필요 있어보임.
 	return (static_cast<unsigned int>(std::max(a, b) - std::min(a, b)));
 }

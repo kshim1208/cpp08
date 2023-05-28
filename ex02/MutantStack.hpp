@@ -4,8 +4,10 @@
 #include <stack>
 #include <iterator>
 
+#include <deque>
 
 // using을 주로 사용함 typedef는 모던 cpp에서는 deprecated됨. using이 c+98 가능인지 체크
+// begin과 같은 range access는 c+11 이후에 적용된 것으로 보인데. 그런데 안잡힌다. 이유가 뭘까?
 
 template<class T>
 class MutantStack : public std::stack<T>
@@ -30,10 +32,11 @@ class MutantStack : public std::stack<T>
 
 	public:
 		MutantStack(/* args*/)
-		{
-		};
+		{};
 
-		~MutantStack(){};
+		~MutantStack()
+		{};
+		
 		MutantStack(const MutantStack& source)
 		{
 			std::copy(source.begin(), source.end(), this->begin());

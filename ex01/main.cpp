@@ -7,10 +7,12 @@ int main()
 	try
 	{
 		Span	a(10);
-		Span	b(20);
 
 		std::cout << a.shortestSpan() << std::endl;
 		std::cout << a.longestSpan() << std::endl;
+
+		Span	b(20);
+
 		std::cout << b.shortestSpan() << std::endl;
 		std::cout << b.longestSpan() << std::endl;
 	}
