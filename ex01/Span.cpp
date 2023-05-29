@@ -38,6 +38,7 @@ Span& Span::operator=(const Span& source)
 	return (*this);
 }
 
+// need to make addNumber add numbers without if-else or loop
 void	Span::addNumber(unsigned int num)
 {
 	if (this->stored_.size() >= this->N_)
