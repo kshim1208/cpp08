@@ -6,6 +6,8 @@
 # include <iterator>
 # include <stdexcept>
 
+// template template
+
 template<template <typename ELEM, typename = std::allocator<ELEM> > class T>
 int	easyfind(T<int>& type, int num)
 {
@@ -14,6 +16,5 @@ int	easyfind(T<int>& type, int num)
 		throw std::invalid_argument("no where. because no same value in container");
 	return (std::distance(type.begin(), iter));
 }
-
 
 #endif

@@ -51,9 +51,9 @@ unsigned int Span::shortestSpan() const
 
 	if (this->N_ <= 1)
 		throw std::invalid_argument("one or no numbers stored");
-	std::adjacent_difference(std::begin(this->stored_), std::end(this->stored_), std::begin(tmp));
-	std::transform(std::begin(tmp), std::end(tmp), std::begin(tmp), static_cast<int (*)(int)>(&std::abs));
-	std::sort(std::begin(tmp) + 1, std::end(tmp));
+	std::adjacent_difference(this->stored_.begin(), this->stored_.end(), tmp.begin());
+	std::transform(tmp.begin(), tmp.end(), tmp.begin(), static_cast<int (*)(int)>(&std::abs));
+	std::sort(tmp.begin() + 1, tmp.end());
 	return (tmp[2]);
 }
 
@@ -63,9 +63,9 @@ unsigned int Span::longestSpan() const
 
 	if (this->N_ <= 1)
 		throw std::invalid_argument("one or no numbers stored");
-	std::adjacent_difference(std::begin(this->stored_), std::end(this->stored_), std::begin(tmp));
-	std::transform(std::begin(tmp), std::end(tmp), std::begin(tmp), static_cast<int (*)(int)>(&std::abs));
-	std::sort(std::begin(tmp) + 1, std::end(tmp));
+	std::adjacent_difference(this->stored_.begin(), this->stored_.end(), tmp.begin());
+	std::transform(tmp.begin(), tmp.end(), tmp.begin(), static_cast<int (*)(int)>(&std::abs));
+	std::sort(tmp.begin() + 1, tmp.end());
 	return (tmp.back());
 }
 
