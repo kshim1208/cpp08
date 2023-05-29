@@ -8,13 +8,23 @@ int main()
 	{
 		Span	a(10);
 
-		std::cout << a.shortestSpan() << std::endl;
-		std::cout << a.longestSpan() << std::endl;
+		a.printElements();
+		std::cout << std::endl;
+
+		std::cout << "a - shortestSpan : " << a.shortestSpan() << std::endl;
+		std::cout << "a - longestSpan : " <<  a.longestSpan() << std::endl;
+
+		std::cout << "------------------" << std::endl;
 
 		Span	b(20);
 
-		std::cout << b.shortestSpan() << std::endl;
-		std::cout << b.longestSpan() << std::endl;
+		b.printElements();
+		std::cout << std::endl;
+
+		std::cout << "b - shortestSpan : " << b.shortestSpan() << std::endl;
+		std::cout << "b - longestSpan : " <<  b.longestSpan() << std::endl;
+
+		std::cout << "------------------" << std::endl;
 	}
 	catch(const std::exception& e)
 	{

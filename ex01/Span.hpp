@@ -19,6 +19,7 @@ class Span
 		void	addNumber(unsigned int num);
 		unsigned int shortestSpan() const;
 		unsigned int longestSpan() const;
+		void	printElements()	const;
 };
 
 #endif

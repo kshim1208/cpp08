@@ -8,20 +8,19 @@
 #include <ctime>
 #include <numeric>
 
+#include <iostream>
 
-// resize와 reserve의 기능상 차이점
 Span::Span(unsigned int num)
 {
 	this->N_ = num;
 	this->stored_.resize(num);
 	std::srand(static_cast<unsigned int>(std::time(0)));
 	std::generate(this->stored_.begin(), this->stored_.end(), random_number);
-	// resize exception
 }
 
 Span::~Span()
 {
-	// vector 종료
+	// vector 종료??
 }
 
 Span::Span(const Span& source)
@@ -29,8 +28,6 @@ Span::Span(const Span& source)
 	this->N_ = source.N_;
 	this->stored_.resize(this->N_);
 	std::copy(source.stored_.begin(), source.stored_.end(), this->stored_.begin());
-	// resize exception
-	// copy exception
 }
 
 Span& Span::operator=(const Span& source)
@@ -38,8 +35,6 @@ Span& Span::operator=(const Span& source)
 	this->N_ = source.N_;
 	this->stored_.resize(this->N_);
 	std::copy(source.stored_.begin(), source.stored_.end(), this->stored_.begin());
-	// resize exception
-	// copy exception
 	return (*this);
 }
 
@@ -56,9 +51,10 @@ unsigned int Span::shortestSpan() const
 
 	if (this->N_ <= 1)
 		throw std::invalid_argument("one or no numbers stored");
-	std::adjacent_difference(std::begin(this->stored_), std::end(this->stored_), std::begin(tmp), check_span);
-	// tmp에서 제일 작은 것 찾기 (절대값 고려)
-	return (tmp[1]);
+	std::adjacent_difference(std::begin(this->stored_), std::end(this->stored_), std::begin(tmp));
+	std::transform(std::begin(tmp), std::end(tmp), std::begin(tmp), static_cast<int (*)(int)>(&std::abs));
+	std::sort(std::begin(tmp) + 1, std::end(tmp));
+	return (tmp[2]);
 }
 
 unsigned int Span::longestSpan() const
@@ -67,9 +63,15 @@ unsigned int Span::longestSpan() const
 
 	if (this->N_ <= 1)
 		throw std::invalid_argument("one or no numbers stored");
-	std::adjacent_difference(std::begin(this->stored_), std::end(this->stored_), std::begin(tmp), check_span);
-	// tmp에서 제일 큰 것 찾기 (절대값 고려)
-	return (tmp[1]);
+	std::adjacent_difference(std::begin(this->stored_), std::end(this->stored_), std::begin(tmp));
+	std::transform(std::begin(tmp), std::end(tmp), std::begin(tmp), static_cast<int (*)(int)>(&std::abs));
+	std::sort(std::begin(tmp) + 1, std::end(tmp));
+	return (tmp.back());
+}
+
+void	Span::printElements() const
+{ 
+	std::for_each(this->stored_.begin(), this->stored_.end(), spanPrint);
 }
 
 int		random_number(void)
@@ -77,7 +79,7 @@ int		random_number(void)
 	return (std::rand() % 10000);
 }
 
-unsigned int	check_span(int a, int b)
+void	spanPrint(const int	&num)
 {
-	return (static_cast<unsigned int>(std::max(a, b) - std::min(a, b)));
+	std::cout << num << std::endl;
 }
